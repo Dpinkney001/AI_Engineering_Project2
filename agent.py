@@ -33,6 +33,7 @@ def _new_session(query: str, wardrobe: dict) -> dict:
 
     You may add fields to this dict as needed for your implementation.
     """
+    
     return {
         "query": query,              # original user query
         "parsed": {},                # extracted description / size / max_price

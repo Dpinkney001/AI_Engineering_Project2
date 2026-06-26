@@ -44,6 +44,19 @@ def handle_query(user_query: str, wardrobe_choice: str) -> tuple[str, str, str]:
            session["fit_card"].
     """
     # TODO: implement this function
+
+    if not user_query.strip():
+        return "Error: Please enter a query.", "", ""   
+    
+    print(f"User query: {user_query}")
+    print(f"Wardrobe choice: {wardrobe_choice}")
+
+    run_agent(user_query, get_example_wardrobe() if wardrobe_choice == "Example wardrobe" else get_empty_wardrobe())    
+
+    #session = run_agent(user_query, get_example_wardrobe() if wardrobe_choice == "Example wardrobe" else get_empty_wardrobe())  
+
+
+
     return "Agent not yet implemented.", "", ""
 
 
