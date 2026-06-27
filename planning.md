@@ -146,6 +146,30 @@ ToolFailure modeAgent responsesearch_listingsNo results match the queryInform th
      search_listings() using load_listings() from the data loader — then test it against 3 queries
      before trusting it" is a plan. -->
 
+     User query
+    │
+    ▼
+Planning Loop ───────────────────────────────────────────┐
+    │                                                    │
+    ├─► search_listings(description, size, max_price)    │
+    │       │ results=[]                                 │
+    │       ├──► [ERROR] "No listings found..." → return │
+    │       │                                            │
+    │       │ results=[item, ...]                        │
+    │       ▼                                            │
+    │   Session: selected_item = results[0]              │
+    │       │                                            │
+    ├─► suggest_outfit(selected_item, wardrobe)          │
+    │       │                                            │
+    │   Session: outfit_suggestion = "..."               │
+    │       │                                            │
+    └─► create_fit_card(outfit_suggestion, selected_item)│
+            │                                            │
+        Session: fit_card = "..."                        │
+            │                                            └─ error path returns here
+            ▼
+        Return session
+
 
 
      Milestone 3 — Individual tool implementations:
@@ -171,24 +195,6 @@ Verification: Run the full example interaction (vintage tee query) and confirm t
 ## A Complete Interaction (Step by Step)
 
 Write out what a full user interaction looks like from start to finish — tool call by tool call. Use a specific example query.
-
-**Example user query:** "I'm looking for a vintage graphic tee under $30. I mostly wear baggy jeans and chunky sneakers. What's out there and how would I style it?"
-
-**Step 1:**
-<!-- What does the agent do first? Which tool is called? With what input? -->
-
-**Step 2:**
-<!-- What happens next? What was returned from step 1? What tool is called now? -->
-
-**Step 3:**
-<!-- Continue until the full interaction is complete -->
-
-**Final output to user:**
-<!-- What does the user actually see at the end? -->
-
-
-
-
 
 A Complete Interaction — Step by Step
 Example query: "I'm looking for a vintage graphic tee under $30. I mostly wear baggy jeans and chunky sneakers. What's out there and how would I style it?"
