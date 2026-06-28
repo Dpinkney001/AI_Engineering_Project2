@@ -186,9 +186,7 @@ Input: Planning Loop, State Management, and Architecture sections + the three to
 Expected output: A controller/agent loop that maintains session state and calls tools in the correct order based on the Architecture diagram
 Verification: Run the full example interaction (vintage tee query) and confirm the agent calls tools in the expected order and produces a complete fit card at the end
 
-**Milestone 3 — Individual tool implementations:**
 
-**Milestone 4 — Planning loop and state management:**
 
 ---
 
